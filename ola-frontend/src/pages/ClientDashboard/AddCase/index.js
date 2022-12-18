@@ -2,77 +2,72 @@ import {
     Table,
     Form,
     Button,
-    Row,
-    Col,
-    Input
+    Input,
 } from "antd";
 import "../../../styles/LawyerDashboard/index.css";
+import { addCaseApi } from '../../../api';
+import { useSelector, useDispatch } from 'react-redux';
+import { addCaseState } from '../../../redux/addCase';
 
 function AddCases() {
+    const { addCase } = useSelector(state => state.addCase)
+    console.log(addCase);
 
-    const data = [
-        {
-            key: '1',
-            title: 'Case 1',
-            client: "Bashir",
-            fee: 'Rs. 10,000',
-            action: ["Accept", "Reject"]
-        },
-        {
-            key: '1',
-            title: 'Case 1',
-            client: "Bashir",
-            fee: 'Rs. 10,000',
-            action: ["Accept", "Reject"]
-        },
-        {
-            key: '1',
-            title: 'Case 1',
-            client: "Bashir",
-            fee: 'Rs. 10,000',
-            action: ["Accept", "Reject"]
-        },
-        {
-            key: '1',
-            title: 'Case 1',
-            client: "Bashir",
-            fee: 'Rs. 10,000',
-            action: ["Accept", "Reject"]
-        },
-    ]
+    const dispatch = useDispatch()
+    const [form] = Form.useForm();
+
+    const onSubmit = () => {
+        addCaseApi.getAddCase(form?.getFieldsValue()).then(() => dispatch(addCaseState(form?.getFieldsValue())))
+    }
+
+    const data = [addCase];
 
     return (
         <>
-            <Form className="availableCases">
+            <Form className="availableCases" form={form} >
                 <Table dataSource={data} pagination={{ pageSize: 7 }} >
                     <Table.Column
                         title="Title"
-                        dataIndex="title"
-                        key="id"
-                    />
-                    <Table.Column
-                        title="Client"
-                        dataIndex="client"
-                        key="id"
-                    />
-                    <Table.Column
-                        title="Fee"
-                        dataIndex="fee"
-                        key="id"
-                        render={(data) => (<Input placeholder="Rs.20,000"/>)}
-                    />
-                    <Table.Column
-                        title="Action"
-                        dataIndex="action"
-                        key="id"
-                        render={(data) => (
-                            <Form.Item>
-                                <Row>
-                                    <Col span={7}><Button type="primary">{data[0]}</Button> </Col>
-                                    <Col span={17}><Button type="text" danger>{data[1]}</Button> </Col>
-                                </Row>
+                        dataIndex="case_details"
+                        key="case_details"
+                        render={() =>
+                            <Form.Item name='case_details'>
+                                <Input />
                             </Form.Item>
-                        )}
+                        }
+                    />
+                    <Table.Column
+                        title="Client Email"
+                        dataIndex="client"
+                        key="client"
+                        render={() =>
+                            <Form.Item name='client'>
+                                <Input />
+                            </Form.Item>
+                        }
+                    />
+                    <Table.Column
+                        title="Lawyer ID"
+                        dataIndex="lawyer"
+                        key="lawyer"
+                        render={() =>
+                            <Form.Item name='lawyer'>
+                                <Input />
+                            </Form.Item>
+                        }
+                    />
+                    <Table.Column
+                        title="Submit"
+                        render={() =>
+                            <Button
+                                type="primary"
+                                htmlType="submit"
+                                onClick={onSubmit}
+                                className="login-form-button"
+                            >
+                                Submit
+                            </Button>
+                        }
                     />
                 </Table>
             </Form>

@@ -1,15 +1,15 @@
 import baseApi from "../baseApi";
 import { errorHandler } from "../../utilities/notification";
-class ClientLoginApi extends baseApi {
+class LawyerLoginApi extends baseApi {
   baseUrl = "/login";
 
-  getClientLogin = async (data) => {
+  getLawyerLogin = async (data) => {
     try {
-      const response = await this.Axios.post(`${this.baseUrl}/client/`, data)
+      const response = await this.Axios.post(`${this.baseUrl}/lawyer/`, data)
       return response.data;
     } catch (error) {
       errorHandler(error)
     }
   }
 }
-export default ClientLoginApi;
+export default LawyerLoginApi;
