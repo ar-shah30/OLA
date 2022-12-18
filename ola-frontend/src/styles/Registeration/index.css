@@ -1,0 +1,23 @@
+.registerartion-form {
+  max-width: 300px;
+}
+
+.registerartion-form-forgot {
+  float: right;
+}
+
+.registerartion-form-button {
+  width: 100%;
+}
+
+.site-form-item-icon {
+  color: #1890FF;
+}
+
+.registerartionLayout {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f0f2f5;
+}

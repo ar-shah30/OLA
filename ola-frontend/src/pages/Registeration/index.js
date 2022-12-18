@@ -1,0 +1,236 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import "../../styles/Registeration/index.css";
+import { clientRegisterApi } from '../../api';
+import { clientRegisterState } from '../../redux/clientRegister';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+    Form,
+    Input,
+    Button,
+    Typography,
+    Layout,
+    Tabs,
+} from 'antd';
+import { MailOutlined, LockOutlined, UserOutlined, PhoneOutlined, IdcardOutlined } from '@ant-design/icons';
+const { Text } = Typography
+const { Content, Footer } = Layout;
+
+
+const Registerartion = () => {
+    const [form] = Form.useForm();
+    const dispatch = useDispatch()
+
+    const { clientRegister } = useSelector(state => state.clientRegister)
+    console.log(clientRegister);
+
+    const onSubmit = () => { 
+        clientRegisterApi.postClientRegister().then(() => dispatch(clientRegisterState(form?.getFieldsValue())));
+    }
+    return (
+        <Layout className='registerartionLayout'>
+            <Tabs defaultActiveKey="1">
+                <Tabs.TabPane tab="Client" key="1">
+                    <Content>
+                        <div className='registerartionHeader'>
+                            <Form
+                                name="normal_registerartion"
+                                className="registerartion-form"
+                                initialValues={{
+                                    remember: true,
+                                }}
+                                form={form}
+                            >
+                                <Form.Item
+                                    name="client_name"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input your Username!',
+                                        },
+                                    ]}
+                                >
+                                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                                </Form.Item>
+                                <Form.Item
+                                    name="client_email"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input your Email!',
+                                        },
+                                    ]}
+                                >
+                                    <Input prefix={<MailOutlined className="site-form-item-icon" />} placeholder="Email" />
+                                </Form.Item>
+                                <Form.Item
+                                    name="client_phone"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input your Phone Number!',
+                                        },
+                                    ]}
+                                >
+                                    <Input prefix={<PhoneOutlined className="site-form-item-icon" />} placeholder="Phone Number" />
+                                </Form.Item>
+                                <Form.Item
+                                    name="client_cnic"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input your CNIC Number!',
+                                        },
+                                    ]}
+                                >
+                                    <Input prefix={<IdcardOutlined className="site-form-item-icon" />} placeholder="CNIC" />
+                                </Form.Item>
+                                <Form.Item
+                                    name="client_password"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input your Password(6 digits at least, case sensitive)!',
+                                        },
+                                    ]}
+                                >
+                                    <Input
+                                        prefix={<LockOutlined className="site-form-item-icon" />}
+                                        type="password"
+                                        placeholder="Password"
+                                    />
+                                </Form.Item>
+                                <Form.Item>
+                                    {/* <Link to='/client'> */}
+                                        <Button type="primary" htmlType="submit" onClick={onSubmit} className="registerartion-form-button">
+                                            Register
+                                        </Button>
+                                    {/* </Link> */}
+                                    Or <Link to="/">already have an account!</Link>
+                                </Form.Item>
+                            </Form>
+                        </div>
+                    </Content>
+                    <Footer>
+                        <Text>Online Legal Assistance</Text>
+                    </Footer>
+                </Tabs.TabPane>
+                <Tabs.TabPane tab="Lawyer" key="2">
+                    {/* <Content>
+                        <div className='registerartionHeader'>
+                            <Form
+                                name="normal_registerartion"
+                                className="registerartion-form"
+                                initialValues={{
+                                    remember: true,
+                                }}
+                                form={form}
+                            >
+                                <Form.Item
+                                    name="lawyer_username"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input your Username!',
+                                        },
+                                    ]}
+                                >
+                                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                                </Form.Item>
+                                <Form.Item
+                                    name="Email"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input your Email!',
+                                        },
+                                    ]}
+                                >
+                                    <Input prefix={<MailOutlined className="site-form-item-icon" />} placeholder="Email" />
+                                </Form.Item>
+                                <Form.Item
+                                    name="lawyer_number"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input your Phone Number!',
+                                        },
+                                    ]}
+                                >
+                                    <Input prefix={<PhoneOutlined className="site-form-item-icon" />} placeholder="Phone Number" />
+                                </Form.Item>
+                                <Form.Item
+                                    name="Specialization"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input your Specialization!',
+                                        },
+                                    ]}
+                                >
+                                    <Input prefix={<StarOutlined className="site-form-item-icon" />} placeholder="Specialization" />
+                                </Form.Item>
+                                <Form.Item
+                                    name="laywer_cnic"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input your CNIC Number!',
+                                        },
+                                    ]}
+                                >
+                                    <Input prefix={<IdcardOutlined className="site-form-item-icon" />} placeholder="CNIC" />
+                                </Form.Item>
+                                <Form.Item
+                                    name="password"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input your Password(6 digits at least, case sensitive)!',
+                                        },
+                                    ]}
+                                >
+                                    <Input
+                                        prefix={<LockOutlined className="site-form-item-icon" />}
+                                        type="password"
+                                        placeholder="Password"
+                                    />
+                                </Form.Item>
+                                <Form.Item
+                                    name="confirm_password"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input your Password(6 digits at least, case sensitive)!',
+                                        },
+                                    ]}
+                                >
+                                    <Input
+                                        prefix={<LockOutlined className="site-form-item-icon" />}
+                                        type="password"
+                                        placeholder="Confirm Password"
+                                    />
+                                </Form.Item>
+                                <Form.Item>
+                                    <Link to='/lawyer'>
+                                        <Button type="primary" htmlType="submit" className="registerartion-form-button">
+                                            Register
+                                        </Button>
+                                    </Link>
+                                    Or <Link to="/">already have an account!</Link>
+                                </Form.Item>
+                            </Form>
+                        </div>
+                    </Content> */}
+                    <Footer>
+                        <Text>Online Legal Assistance</Text>
+                    </Footer>
+                </Tabs.TabPane>
+            </Tabs>
+        </Layout>
+
+    );
+};
+
+
+export default Registerartion;

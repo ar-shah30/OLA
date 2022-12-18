@@ -1,0 +1,20 @@
+.ant-row-rtl .logo {
+  float: right;
+  margin: 16px 0 16px 24px;
+}
+
+.site-layout-background {
+  background: #fff;
+}
+
+.availableCases .ant-form-item {
+  margin-bottom: 0;
+}
+
+.postStatus .ant-form-item {
+  margin-bottom: 0;
+}
+
+:where(.css-dev-only-do-not-override-1gjgzgi).ant-upload-wrapper .ant-upload-list.ant-upload-list-picture .ant-upload-list-item-error, :where(.css-dev-only-do-not-override-1gjgzgi).ant-upload-wrapper .ant-upload-list.ant-upload-list-picture-card .ant-upload-list-item-error {
+  border-color: transparent;
+}
