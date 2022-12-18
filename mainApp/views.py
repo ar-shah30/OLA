@@ -5,6 +5,10 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.http import Http404
 from django.db.models import Q
+from datetime import  datetime
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
+from django.http import HttpResponse, JsonResponse
 
 
 class SignUpAsLaywer(APIView):
@@ -184,16 +188,23 @@ class CaseDetail(APIView):
         case.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-def place_case(self, lawyer_id, case_details, case_type):
-        case = Cases(
-            lawyer_id=lawyer_id,
-            client_id=self,
-            case_creation_date=datetime.now(),
-            case_details=case_details,
-            case_type=case_type
-        )
-        case.save()
-        return case
+@csrf_exempt
+def place_case(request):
+        if request.method == 'POST':
+            data = JSONParser().parse(request)
+            lawyer = data.get("lawyer")
+            client = data.get("client")
+            lawyer_id = Lawyer.objects.get(lawyer_cnic = lawyer)
+            client_id = Client.objects.get(client_email = client)
+            case_details = data.get("case_details")
+            case = Cases(
+                lawyer_id=lawyer_id,
+                client_id=client_id,
+                case_creation_date=datetime.now(),
+                case_details=case_details
+            )
+            case.save()
+            return JsonResponse(data= {"success": "Case Created"}, status=201)
 
 def accept_case(self, case_reference_no):
     case = Cases.objects.get(case_reference_no=case_reference_no)
