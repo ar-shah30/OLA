@@ -183,3 +183,101 @@ class CaseDetail(APIView):
         case = self.get_object(pk)
         case.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+def place_case(self, lawyer_id, case_details, case_type):
+        case = Cases(
+            lawyer_id=lawyer_id,
+            client_id=self,
+            case_creation_date=datetime.now(),
+            case_details=case_details,
+            case_type=case_type
+        )
+        case.save()
+        return case
+
+def accept_case(self, case_reference_no):
+    case = Cases.objects.get(case_reference_no=case_reference_no)
+    case.case_status = 'AC'
+    case.save()
+    return case
+
+def reject_case(self, case_reference_no):
+    case = Cases.objects.get(case_reference_no=case_reference_no)
+    case.case_status = 'RE'
+    case.save()
+    return case
+
+def close_case(self, case_reference_no):
+    case = Cases.objects.get(case_reference_no=case_reference_no)
+    case.case_status = 'CL'
+    case.save()
+    return case
+
+def get_cases(self):
+    return Cases.objects.filter(client_id=self)
+
+def get_open_cases(self):
+    return Cases.objects.filter(client_id=self, case_status='OP')
+
+def get_accepted_cases(self):
+    return Cases.objects.filter(client_id=self, case_status='AC')
+
+def get_closed_cases(self):
+    return Cases.objects.filter(client_id=self, case_status='CL')
+
+def get_rejected_cases(self):
+    return Cases.objects.filter(client_id=self, case_status='RE')
+
+def get_freshman_cases(self):
+    return Cases.objects.filter(client_id=self, case_type='FR')
+
+def get_sophomore_cases(self):
+    return Cases.objects.filter(client_id=self, case_type='SO')
+
+def get_junior_cases(self):
+    return Cases.objects.filter(client_id=self, case_type='JR')
+
+def get_senior_cases(self):
+    return Cases.objects.filter(client_id=self, case_type='SR')
+
+def get_graduate_cases(self):
+    return Cases.objects.filter(client_id=self, case_type='GR')
+
+def get_case_details(self, case_reference_no):
+    return Cases.objects.get(case_reference_no=case_reference_no)
+
+def get_lawyer_details(self, case_reference_no):
+    case = Cases.objects.get(case_reference_no=case_reference_no)
+    return Lawyer.objects.get(lawyer_cnic=case.lawyer_id)
+
+def get_lawyer_name(self, case_reference_no):
+    case = Cases.objects.get(case_reference_no=case_reference_no)
+    return Lawyer.objects.get(lawyer_cnic=case.lawyer_id).lawyer_name
+
+def get_lawyer_email(self, case_reference_no):
+    case = Cases.objects.get(case_reference_no=case_reference_no)
+    return Lawyer.objects.get(lawyer_cnic=case.lawyer_id).lawyer_email
+
+def get_lawyer_phone(self, case_reference_no):
+    case = Cases.objects.get(case_reference_no=case_reference_no)
+    return Lawyer.objects.get(lawyer_cnic=case.lawyer_id).lawyer_phone
+
+def get_lawyer_qualification(self, case_reference_no):
+    case = Cases.objects.get(case_reference_no=case_reference_no)
+    return Lawyer.objects.get(lawyer_cnic=case.lawyer_id).lawyer_qualification
+
+def get_lawyer_specialization(self, case_reference_no):
+    case = Cases.objects.get(case_reference_no=case_reference_no)
+    return Lawyer.objects.get(lawyer_cnic=case.lawyer_id).lawyer_specialization
+
+def get_case_status(self, case_reference_no):
+    case = Cases.objects.get(case_reference_no=case_reference_no)
+    return case.case_status
+
+def get_case_type(self, case_reference_no):
+    case = Cases.objects.get(case_reference_no=case_reference_no)
+    return case.case_type
+
+def get_case_creation_date(self, case_reference_no):
+    case = Cases.objects.get(case_reference_no=case_reference_no)
+    return case.case_creation_date
