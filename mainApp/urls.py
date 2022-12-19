@@ -1,6 +1,6 @@
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
-from mainApp.views import ClientsList, ClientDetail, LawyerDetail, LawyerList, CaseList, CaseDetail, SignUpAsClient, SignUpAsLaywer, LoginAsLaywer,LoginAsClient, accept_case, close_case, get_accepted_cases, get_case_creation_date, get_case_details, get_case_status, get_case_type, get_cases, get_closed_cases, get_freshman_cases, get_graduate_cases, get_junior_cases, get_lawyer_details, get_lawyer_email, get_lawyer_name, get_lawyer_phone, get_lawyer_qualification, get_lawyer_specialization, get_open_cases, get_rejected_cases, get_senior_cases, get_sophomore_cases, place_case, reject_case
+from mainApp.views import ClientsList, ClientDetail, LawyerDetail, LawyerList, CaseList, CaseDetail, SignUpAsClient, SignUpAsLaywer, LoginAsLaywer,LoginAsClient, accept_case, close_case, get_accepted_cases, get_case_creation_date, get_case_details, get_case_status, get_case_type,  get_closed_cases, get_freshman_cases, get_graduate_cases, get_junior_cases, get_lawyer_details, get_lawyer_email, get_lawyer_name, get_lawyer_phone, get_lawyer_qualification, get_lawyer_specialization, get_open_cases, get_rejected_cases, get_senior_cases, get_sophomore_cases, place_case, reject_case, CaseDetailForLawyer
  
 # urlpatterns = [
 #     path('clients/', ClientsList.as_view()),
@@ -30,7 +30,7 @@ urlpatterns = [
     path('client/accept-case', accept_case),
     path('client/reject-case', reject_case),
     path('client/close-case', close_case),
-    path('client/get-cases', get_cases),
+    path('client/get-cases/<int:cnic>', CaseDetailForLawyer.as_view()),
     path('client/get-open-cases', get_open_cases),
     path('client/get-accepted-cases', get_accepted_cases),
     path('client/get-closed-cases', get_closed_cases),

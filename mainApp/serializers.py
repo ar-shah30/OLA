@@ -48,3 +48,22 @@ class CaseSerializer(serializers.Serializer):
     #     instance.style = validated_data.get('style', instance.style)
     #     instance.save()
     #     return instance
+
+class CasesDetailSerializer(serializers.ModelSerializer):
+    model = Cases
+    fields = '__all__'
+
+class CaseSerializerForLawyer(serializers.Serializer):
+    case_reference_no = serializers.CharField(required=False, max_length=13)
+    lawyer_name = serializers.SerializerMethodField()
+    client_name = serializers.SerializerMethodField()
+    case_creation_date = serializers.DateTimeField(required = False)
+    case_details = serializers.CharField(required=False)
+
+    def get_lawyer_name(self, obj):
+        lawyer = f'{obj.lawyer_id.lawyer_name}'
+        return lawyer
+    
+    def get_client_name(self, obj):
+        client = f'{obj.client_id.client_name}'
+        return client

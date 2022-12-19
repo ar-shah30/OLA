@@ -1,5 +1,5 @@
 from mainApp.models import Client, Lawyer, Cases
-from mainApp.serializers import ClientSerializer, LawyerSerializer, CaseSerializer
+from mainApp.serializers import ClientSerializer, LawyerSerializer, CaseSerializer, CasesDetailSerializer, CaseSerializerForLawyer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -206,6 +206,15 @@ def place_case(request):
             case.save()
             return JsonResponse(data= {"success": "Case Created"}, status=201)
 
+class CaseDetailForLawyer(APIView):
+
+    def get(self, request, cnic, format=None):
+        case = Cases.objects.filter(lawyer_id__lawyer_cnic = cnic)
+        if case:
+            serializer = CaseSerializerForLawyer(case, many=True)
+            return Response(serializer.data)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+      
 def accept_case(self, case_reference_no):
     case = Cases.objects.get(case_reference_no=case_reference_no)
     case.case_status = 'AC'
@@ -223,9 +232,6 @@ def close_case(self, case_reference_no):
     case.case_status = 'CL'
     case.save()
     return case
-
-def get_cases(self):
-    return Cases.objects.filter(client_id=self)
 
 def get_open_cases(self):
     return Cases.objects.filter(client_id=self, case_status='OP')
