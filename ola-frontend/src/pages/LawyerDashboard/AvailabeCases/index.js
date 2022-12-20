@@ -1,78 +1,64 @@
 import {
     Table,
     Form,
-    Button,
-    Row,
-    Col,
-    Input
 } from "antd";
 import "../../../styles/LawyerDashboard/index.css";
+import { availableCasesApi } from '../../../api';
+import { useSelector, useDispatch } from 'react-redux';
+import { availableCasesState } from '../../../redux/availableCase';
+import { useEffect } from "react";
+import moment from "moment";
 
 function AvailableCases() {
+    const { availableCases } = useSelector(state => state.availableCases)
+console.log(availableCases);
+    const dispatch = useDispatch()
+    const [form] = Form.useForm();
 
-    const data = [
-        {
-            key: '1',
-            title: 'Case 1',
-            client: "Bashir",
-            fee: 'Rs. 10,000',
-            action: ["Accept", "Reject"]
-        },
-        {
-            key: '1',
-            title: 'Case 1',
-            client: "Bashir",
-            fee: 'Rs. 10,000',
-            action: ["Accept", "Reject"]
-        },
-        {
-            key: '1',
-            title: 'Case 1',
-            client: "Bashir",
-            fee: 'Rs. 10,000',
-            action: ["Accept", "Reject"]
-        },
-        {
-            key: '1',
-            title: 'Case 1',
-            client: "Bashir",
-            fee: 'Rs. 10,000',
-            action: ["Accept", "Reject"]
-        },
-    ]
+    useEffect(() => {
+        availableCasesApi.getAvailableCases(12345).then((res) => dispatch(availableCasesState(res)))
+    }, [dispatch, form])
+    
+    const data = Object.keys(availableCases).map((key) => {
+        return {
+            key: key,
+            case_reference_no: availableCases[key].case_reference_no,
+            lawyer_name: availableCases[key].lawyer_name,
+            client_name: availableCases[key].client_name,
+            case_details: availableCases[key].case_details,
+            case_creation_date: availableCases[key].case_creation_date,
+        }
+    })
 
     return (
         <>
-            <Form className="availableCases">
+            <Form className="availableCases" form={form} >
                 <Table dataSource={data} pagination={{ pageSize: 7 }} >
                     <Table.Column
-                        title="Title"
-                        dataIndex="title"
-                        key="id"
+                        title="Reference No"
+                        dataIndex="case_reference_no"
+                        key="case_reference_no"
                     />
                     <Table.Column
-                        title="Client"
-                        dataIndex="client"
-                        key="id"
+                        title="Lawyer Name"
+                        dataIndex="lawyer_name"
+                        key="lawyer_name"
                     />
                     <Table.Column
-                        title="Fee"
-                        dataIndex="fee"
-                        key="id"
-                        render={(data) => (<Input placeholder="Rs.20,000"/>)}
+                        title="Client Name"
+                        dataIndex="client_name"
+                        key="client_name"
                     />
                     <Table.Column
-                        title="Action"
-                        dataIndex="action"
-                        key="id"
-                        render={(data) => (
-                            <Form.Item>
-                                <Row>
-                                    <Col span={7}><Button type="primary">{data[0]}</Button> </Col>
-                                    <Col span={17}><Button type="text" danger>{data[1]}</Button> </Col>
-                                </Row>
-                            </Form.Item>
-                        )}
+                        title="Case Details"
+                        dataIndex="case_details"
+                        key="case_details"
+                    />
+                    <Table.Column
+                        title="Case Creation Date"
+                        dataIndex="case_creation_date"
+                        key="case_creation_date"
+                        render={(text) => moment(text).format("DD-MM-YYYY")}
                     />
                 </Table>
             </Form>

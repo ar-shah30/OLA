@@ -11,7 +11,6 @@ import { addCaseState } from '../../../redux/addCase';
 
 function AddCases() {
     const { addCase } = useSelector(state => state.addCase)
-    console.log(addCase);
 
     const dispatch = useDispatch()
     const [form] = Form.useForm();
@@ -19,7 +18,6 @@ function AddCases() {
     const onSubmit = () => {
         addCaseApi.getAddCase(form?.getFieldsValue()).then(() => dispatch(addCaseState(form?.getFieldsValue())))
     }
-
     const data = [addCase];
 
     return (

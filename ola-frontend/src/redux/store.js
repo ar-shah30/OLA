@@ -4,6 +4,7 @@ import clientRegisterReducer from './clientRegister'
 import lawyerLoginReducer from './lawyerLogin'
 import lawyerRegisterReducer from './lawyerRegister'
 import addCaseReducer from './addCase'
+import availableCasesReducer from './availableCase'
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     clientRegister: clientRegisterReducer,
     lawyerRegister: lawyerRegisterReducer,
     addCase: addCaseReducer,
+    availableCases: availableCasesReducer,
   },
 })

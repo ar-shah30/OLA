@@ -1,15 +1,15 @@
 import baseApi from "../baseApi";
 import { errorHandler } from "../../utilities/notification";
-class AddCaseApi extends baseApi {
+class AvailableCasesApi extends baseApi {
   baseUrl = "/client";
 
-  getAddCase = async (data) => {
+  getAvailableCases = async(id) => {
     try {
-      const response = await this.Axios.post(`${this.baseUrl}/place-case/`, data)
+      const response = await this.Axios.get(`${this.baseUrl}/get-cases/${id}`)
       return response.data;
     } catch (error) {
       errorHandler(error)
     }
   }
 }
-export default AddCaseApi;
+export default AvailableCasesApi;
