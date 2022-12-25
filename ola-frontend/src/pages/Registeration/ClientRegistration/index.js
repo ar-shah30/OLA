@@ -79,11 +79,11 @@ const ClientRegisterartion = () => {
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input your Phone Number!',
+                                message: 'Please input your Age!',
                             },
                         ]}
                     >
-                        <Input prefix={<ClockCircleOutlined className="site-form-item-icon" />} placeholder="Phone Number" />
+                        <Input prefix={<ClockCircleOutlined className="site-form-item-icon" />} placeholder="Age" />
                     </Form.Item>
                     <Form.Item
                         name="client_cnic"
