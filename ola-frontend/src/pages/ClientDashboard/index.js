@@ -14,6 +14,7 @@ import {
     CheckCircleOutlined,
     PayCircleOutlined,
     SettingOutlined,
+    LogoutOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu, Typography, Badge } from 'antd';
 const { Header, Content, Sider } = Layout;
@@ -47,6 +48,9 @@ const ClientDashboard = () => (
                     </Menu.Item>
                     <Menu.Item key="5">
                         <Link to='clientsetting'> <SettingOutlined /> Setting</Link>
+                    </Menu.Item>
+                    <Menu.Item key="6">
+                        <Link to='/register'> <LogoutOutlined /> Log Out</Link>
                     </Menu.Item>
                 </Menu>
             </Sider>

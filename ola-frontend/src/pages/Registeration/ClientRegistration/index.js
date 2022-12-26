@@ -4,6 +4,7 @@ import "../../../styles/Registeration/index.css";
 import { clientRegisterApi } from '../../../api';
 import { clientRegisterState } from '../../../redux/clientRegister';
 import { useSelector, useDispatch } from 'react-redux';
+import { toast } from '../../../utilities/notification';
 import {
     Form,
     Input,
@@ -112,7 +113,7 @@ const ClientRegisterartion = () => {
                         />
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" onClick={onSubmit} className="registerartion-form-button">
+                        <Button type="primary" htmlType="submit" onClick={() => {onSubmit(); toast("Successfully, Registered!")}} className="registerartion-form-button">
                             Register
                         </Button>
                         Or <Link to="/">already have an account!</Link>
