@@ -16,7 +16,7 @@ console.log(availableCases);
     const [form] = Form.useForm();
 
     useEffect(() => {
-        availableCasesApi.getAvailableCases(12345).then((res) => dispatch(availableCasesState(res)))
+        availableCasesApi.getAvailableCases('2444').then((res) => dispatch(availableCasesState(res)))
     }, [dispatch, form])
     
     const data = Object.keys(availableCases).map((key) => {
