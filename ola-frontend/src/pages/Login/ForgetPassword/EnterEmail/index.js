@@ -1,3 +1,4 @@
+/* The above code is a React component that renders a form for the user to enter their email address. */
 import React from 'react';
 import "../../../../styles/Login/index.css";
 import { toast } from '../../../../utilities/notification';
@@ -12,6 +13,9 @@ import { MailOutlined } from '@ant-design/icons';
 const { Text } = Typography
 const { Content, Footer } = Layout;
 
+/**
+ * It's a form that takes in an email and sends a reset code to that email
+ */
 const EnterEmail = () => {
 
     const onFinish = values => {

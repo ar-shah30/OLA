@@ -1,3 +1,4 @@
+/* This is the code for the client dashboard. */
 import React from 'react';
 import "../../styles/ClientDashboard/index.css";
 import ClientProfile from "./ClientProfile";
@@ -20,6 +21,10 @@ import { Layout, Menu, Typography, Badge } from 'antd';
 const { Header, Content, Sider } = Layout;
 const { Text } = Typography;
 
+/**
+ * It returns a Layout component that contains a Header component, a Layout component, a Sider
+ * component, a Layout component, and a Content component
+ */
 const ClientDashboard = () => (
     <Layout>
         <Header className="header">

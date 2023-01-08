@@ -1,3 +1,5 @@
+/* It's a class that extends the baseApi class and has a method that makes a get request to the backend
+to get the available cases for a client */
 import baseApi from "../baseApi";
 import { errorHandler } from "../../utilities/notification";
 class AvailableCasesApi extends baseApi {

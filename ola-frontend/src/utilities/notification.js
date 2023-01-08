@@ -1,3 +1,4 @@
+/* A function that is used to handle errors. */
 
 import { Typography, notification } from "antd";
 import { WarningOutlined, InfoCircleOutlined } from "@ant-design/icons";
@@ -29,6 +30,10 @@ export const errorHandler = (error) => {
         });
     }
 };
+/**
+ * It takes a string as an argument and displays it as a notification
+ * @param res - The response from the server.
+ */
 
 export const toast = (res) => {
     notification.open({

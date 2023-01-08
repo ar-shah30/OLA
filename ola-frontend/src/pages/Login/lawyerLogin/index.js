@@ -18,6 +18,9 @@ import { MailOutlined, LockOutlined, ArrowRightOutlined } from '@ant-design/icon
 const { Text } = Typography
 const { Content } = Layout;
 
+/**
+ * The LawyerLogin function is a React component that renders a form for a lawyer to login
+ */
 const LawyerLogin = () => {
     const [show, setShow] = React.useState(false);
     const { lawyerLogin } = useSelector(state => state.lawyerLogin)
@@ -26,6 +29,14 @@ const LawyerLogin = () => {
     const dispatch = useDispatch()
     const [form] = Form.useForm();
 
+    /**
+     * The function onLawyerSubmit() is called when the user clicks the submit button on the login
+     * form. The function then calls the getLawyerLogin() function from the lawyerLoginApi.js file. If
+     * the user's email and password are correct, the function will dispatch the lawyerLoginState()
+     * function from the lawyerLoginState.js file. If the user's email and password are correct, the
+     * function will set the show variable to true. If the user's email and password are incorrect, the
+     * function will set the show variable to false
+     */
     const onLawyerSubmit = () => {
         lawyerLoginApi.getLawyerLogin(form?.getFieldsValue())
             .then(() => {

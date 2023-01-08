@@ -1,3 +1,7 @@
+/**
+ * It fetches the available cases from the database and displays them in a table
+ * @returns A table with the available cases.
+ */
 import {
     Table,
     Form,
@@ -10,15 +14,19 @@ import { useEffect } from "react";
 import moment from "moment";
 
 function AvailableCases() {
+    /* Destructuring the state from the redux store. */
     const { availableCases } = useSelector(state => state.availableCases)
-console.log(availableCases);
+    console.log(availableCases);
     const dispatch = useDispatch()
     const [form] = Form.useForm();
 
+    /* A hook that is called when the component is mounted. It fetches the available cases from the
+    database and displays them in a table. */
     useEffect(() => {
-        availableCasesApi.getAvailableCases('2444').then((res) => dispatch(availableCasesState(res)))
+        availableCasesApi.getAvailableCases(6666).then((res) => dispatch(availableCasesState(res)))
     }, [dispatch, form])
-    
+
+    /* Mapping the availableCases object to an array of objects. */
     const data = Object.keys(availableCases).map((key) => {
         return {
             key: key,
@@ -30,6 +38,7 @@ console.log(availableCases);
         }
     })
 
+    /* Returning a table with the available cases. */
     return (
         <>
             <Form className="availableCases" form={form} >

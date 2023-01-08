@@ -1,3 +1,4 @@
+/* A component of lawyer registeration. */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import "../../../styles/Registeration/index.css";
@@ -26,12 +27,15 @@ const LawyerRegisterartion = () => {
     const [form] = Form.useForm();
     const dispatch = useDispatch()
 
+    /* A function that is called when the user clicks on the submit button. It is used to send the data
+    to the server. */
     const { lawyerRegister } = useSelector(state => state.lawyerRegister)
     console.log(lawyerRegister);
 
     const onSubmit = () => {
         lawyerRegisterApi.postLawyerRegister(form?.getFieldsValue()).then(() => dispatch(lawyerRegisterState(form?.getFieldsValue())));
     }
+    /* A component of lawyer registeration. */
     return (
         <Content>
             <div className='registerartionHeader'>

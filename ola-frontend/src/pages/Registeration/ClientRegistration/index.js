@@ -1,3 +1,4 @@
+/* A component of client registeration. */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import "../../../styles/Registeration/index.css";
@@ -28,9 +29,13 @@ const ClientRegisterartion = () => {
     const { clientRegister } = useSelector(state => state.clientRegister)
     console.log(clientRegister);
 
+    /**
+     * A function that is called when the user clicks the submit button.
+     */
     const onSubmit = () => {
         clientRegisterApi.postClientRegister(form?.getFieldsValue()).then(() => dispatch(clientRegisterState(form?.getFieldsValue())));
     }
+    /* A component of client registeration. */
     return (
         <Content>
             <div className='registerartionHeader'>

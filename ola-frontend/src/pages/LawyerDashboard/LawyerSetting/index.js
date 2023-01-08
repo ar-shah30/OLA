@@ -1,3 +1,8 @@
+/**
+ * It returns a form with a username, profession, email, phone number, change password and update
+ * button
+ * @returns A form with a row of two columns.
+ */
 import React from 'react';
 import { Button, Form, Input, Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
@@ -11,6 +16,10 @@ function LawyerSetting() {
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
+    /* A form with a username, profession, email, phone number, change password and update
+     * button
+     * @returns A form with a row of two columns.
+    */
 
     return (
         <Form

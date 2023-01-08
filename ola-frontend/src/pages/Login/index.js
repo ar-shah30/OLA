@@ -1,3 +1,4 @@
+/* This is a React component. */
 import React from 'react';
 import "../../styles/Login/index.css";
 import {
@@ -11,6 +12,10 @@ import ClientLogin from './clientLogin';
 const { Text } = Typography
 const { Footer } = Layout;
 
+/**
+ * It returns a Layout component with a Tabs component inside it
+ * @returns A layout with a tabbed view of the client and lawyer login components.
+ */
 const Login = () => {
 
     return (

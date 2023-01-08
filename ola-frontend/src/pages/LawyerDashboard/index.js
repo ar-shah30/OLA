@@ -1,3 +1,4 @@
+/* This is the code for the lawyer dashboard. */
 import React from 'react';
 import "../../styles/LawyerDashboard/index.css";
 import LawyerProfile from "./LawyerProfile";
@@ -20,6 +21,9 @@ import { Layout, Menu, Typography, Badge } from 'antd';
 const { Header, Content, Sider } = Layout;
 const { Text } = Typography;
 
+/**
+ * It returns a Layout component with a Header, Sider, and Content component
+ */
 const LawyerDashboard = () => (
     <Layout>
         <Header className="header">

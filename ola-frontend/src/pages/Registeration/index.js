@@ -1,3 +1,7 @@
+/**
+ * It returns a Layout component that contains a Tabs component that contains two TabPane components,
+ * one for the client and one for the lawyer
+ */
 import React from 'react';
 import "../../styles/Registeration/index.css";
 import ClientRegisterartion from './ClientRegistration';

@@ -1,3 +1,4 @@
+/* A component that is used to change the password of the user. */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import "../../../../styles/Login/index.css";
@@ -13,11 +14,10 @@ import { LockOutlined } from '@ant-design/icons';
 const { Text } = Typography
 const { Content, Footer } = Layout;
 
+/**
+ * It returns a layout with a form that has a text, two input fields, a button and a link
+ */
 const ChangePassword = () => {
-
-    const onFinish = values => {
-        console.log('Received values of form: ', values);
-    };
 
     return (
 
@@ -29,7 +29,6 @@ const ChangePassword = () => {
                     initialValues={{
                         remember: true,
                     }}
-                    onFinish={onFinish}
                 >
                     <Form.Item>
                         <Text className='site-form-item-icon'>Change Password</Text>

@@ -1,3 +1,8 @@
+/**
+ * It renders the Login page by default, and if the user is logged in, it renders the ClientDashboard
+ * or LawyerDashboard page depending on the user type
+ * @returns The return value of the last statement in the function.
+ */
 import React from "react";
 import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
@@ -8,6 +13,11 @@ import EnterEmail from "./pages/Login/ForgetPassword/EnterEmail";
 import ChangePassword from "./pages/Login/ForgetPassword/ChangePassword";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
+/**
+ * The App function returns a div with a header, which contains a Router, which contains Routes, which
+ * contains Route, which contains a Navigate, which contains a PageNotFound
+ * @returns The return statement is returning the JSX code.
+ */
 function App() {
   return (
     <div className="App">

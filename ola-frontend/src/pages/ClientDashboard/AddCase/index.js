@@ -1,3 +1,7 @@
+/**
+ * This function is used to add cases to the database
+ * @returns A table with the following columns: Title, Client Email, Lawyer ID, and Submit.
+ */
 import {
     Table,
     Form,

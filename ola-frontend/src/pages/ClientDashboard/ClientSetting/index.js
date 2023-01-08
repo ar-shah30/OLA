@@ -1,3 +1,8 @@
+/**
+ * It returns a form with a row of two columns, each column has a form item with a label and an input
+ * field
+ * @returns A form with a row of two columns.
+ */
 import React from 'react';
 import { Button, Form, Input, Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
