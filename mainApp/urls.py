@@ -1,6 +1,6 @@
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
-from mainApp.views import ClientsList, ClientDetail, LawyerDetail, LawyerList, CaseList, CaseDetail, SignUpAsClient, SignUpAsLaywer, LoginAsLaywer,LoginAsClient, accept_case, close_case, get_accepted_cases, get_case_creation_date, get_case_details, get_case_status, get_case_type,  get_closed_cases, get_freshman_cases, get_graduate_cases, get_junior_cases, get_lawyer_details, get_lawyer_email, get_lawyer_name, get_lawyer_phone, get_lawyer_qualification, get_lawyer_specialization, get_open_cases, get_rejected_cases, get_senior_cases, get_sophomore_cases, place_case, reject_case, CaseDetailForLawyer
+from mainApp.views import ClientsList, CNICGet, ClientDetail, LawyerDetail, LawyerList, CaseList, CaseDetail, SignUpAsClient, SignUpAsLaywer, LoginAsLaywer,LoginAsClient, accept_case, close_case, get_accepted_cases, get_case_creation_date, get_case_details, get_case_status, get_case_type,  get_closed_cases, get_freshman_cases, get_graduate_cases, get_junior_cases, get_lawyer_details, get_lawyer_email, get_lawyer_name, get_lawyer_phone, get_lawyer_qualification, get_lawyer_specialization, get_open_cases, get_rejected_cases, get_senior_cases, get_sophomore_cases, place_case, reject_case, CaseDetailForLawyer
  
 # urlpatterns = [
 #     path('clients/', ClientsList.as_view()),
@@ -50,5 +50,6 @@ urlpatterns = [
     path('client/get-case-status', get_case_status),
     path('client/get-case-type', get_case_type),
     path('client/get-case-creation-date', get_case_creation_date),
+    path('get-CNIC-from-email/<str:email>', CNICGet.as_view())
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)
