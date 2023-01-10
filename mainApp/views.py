@@ -304,4 +304,4 @@ class CNICGet(APIView):
    def get(self, request, email, format=None):
         CNIC = Lawyer.objects.filter(lawyer_email=email)
         # return CNIC.first().lawyer_cnic
-        return JsonResponse(data= {"CNIC": CNIC.first().lawyer_cnic})         
+        return JsonResponse(data= {"CNIC": CNIC.first().lawyer_cnic if CNIC else ''})         
